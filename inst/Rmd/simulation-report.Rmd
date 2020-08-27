@@ -1,0 +1,66 @@
+---
+title: "CAT Demo Suite Simulation Report"
+output: html_document
+params:
+  n: NA
+---
+
+
+```{r a1, echo=FALSE}
+
+knitr::opts_chunk$set(echo = F, message = F, cache = F, warning = F)
+options(knitr.duplicate.label = 'allow')
+
+```
+
+
+## Simulation Results
+
+```{r }
+
+ getResult_history_table()
+
+```
+
+\newline
+\newline
+\newline
+
+## True vs. Estimated Theta
+
+```{r}
+nSim = length(rea_simulator$history)
+# h = if (nSim > 10) 12 else if (nSim > 8) 10 else if (nSim > 6) 6 else if (nSim > 4) 4 else 2
+h = ceiling(nSim/2) * 3
+w = if (nSim > 1) 12 else 6
+```
+
+
+```{r  fig.height=h, fig.width=w}
+
+getResult_scatter_plot(resultList = rea_simulator$history)
+
+```
+
+\newline
+\newline
+\newline
+
+## CSEM
+
+```{r  fig.height=h, fig.width=w}
+
+genCSEM_scatter_plot(resultList = rea_simulator$history) 
+
+```
+
+
+## Adaptivity
+
+```{r  fig.height=h, fig.width=w}
+
+genAdaptivity_plot (resultList = rea_simulator$history, 
+                    startThetaList = map(rea_simulator$history, ~.x$control$startTheta)) 
+
+```
+

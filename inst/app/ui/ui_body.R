@@ -1,0 +1,53 @@
+
+source("ui/ui_tool_pool.R", local = T)
+source("ui/ui_tool_report.R", local = T)
+source("ui/ui_tool_result.R", local = T)
+
+
+source("ui/ui_simulator_create_input.R", local = T)
+source("ui/ui_simulator_input.R", local = T)
+source("ui/ui_simulator_output.R", local = T)
+source("ui/ui_simulator_content.R", local = T)
+
+source("ui/ui_form_assembly_input.R", local = T)
+source("ui/ui_form_assembly_output_plot.R", local = T)
+source("ui/ui_form_assembly_output_table.R", local = T)
+
+
+dashboardBody(
+
+  ## custom look
+  ## source("ui/custom_background.R", local = TRUE)$value,
+
+  plotOutput("plot1", height = "1px"),
+    
+  bsAlert("catSuiteAlert"),
+
+  tabItems(
+    
+    tabItem_simulator_input, 
+
+    tabItem_simulator_create_input,
+    
+    tabItem_simulator_output,
+    
+    tabItem_simulator_content,
+
+    tabItem_form_assembly_input,
+
+    tabItem_ATA_plot_output,
+    
+    ## tabItem_module_assembly_input,
+    ## 
+    ## tabItem_module_assembly_create_input,
+    ## 
+    ## tabItem_module_assembly_plot_output,
+    
+    tabItem_tool_pool,
+    
+    tabItem_tool_report,
+    
+    tabItem_tool_result
+    
+  )
+)
